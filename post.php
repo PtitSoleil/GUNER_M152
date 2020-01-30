@@ -7,11 +7,28 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <script src="https://kit.fontawesome.com/c89edac6b7.js" crossorigin="anonymous"></script>
-
+        <link rel="stylesheet" href="./css/style.css">
         <title>M152 - Post</title>
     </head>
     <body>
         <?php include './includes/header.html';?>
+
+        <form>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 card">
+                    <form>
+                        <label for="img"><i class="fas fa-user"></i></label>
+                        <textarea rows="2"></textarea>
+                        <label for="img"><i class="far fa-images"></i></label>
+                        <input type="file" name="img" id="img">
+                        <button type="button" class="btn btn-outline-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </form>
+
 
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
