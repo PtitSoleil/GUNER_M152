@@ -13,23 +13,20 @@
     <body>
         <?php include './includes/header.html';?>
 
-        <form>
+        <form method="POST" action="./php/post.php" enctype="multipart/form-data">
         <div class="container">
             <div class="row">
                 <div class="col-12 card">
-                    <form>
                         <label for="img"><i class="fas fa-user"></i></label>
                         <textarea rows="2"></textarea>
-                        <label for="img"><i class="far fa-images"></i></label>
-                        <input type="file" name="img" id="img">
-                        <button type="button" class="btn btn-outline-primary">Submit</button>
-                    </form>
+                        <label for="imgFile"><i class="far fa-images"></i></label>
+                        <input type="hidden" name="MAX_FILE_SIZE" value="3000000">
+                        <input type="file" name="imgFile" id="imgFile" multiple accept="image/*">
+                        <input type="submit" class="btn btn-outline-primary" name="envoyer" value="Submit">
                 </div>
             </div>
         </div>
         </form>
-
-
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
