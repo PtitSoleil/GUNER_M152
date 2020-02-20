@@ -32,7 +32,7 @@ function insertMedia($nomFichierMedia,$typeMedia, $tmpName, $idPost){
         $splitName = explode(".", $nom_fichier);
         $newName = uniqid();
         $finalName = $newName . "." . $splitName[1];
-        $db->query('INSERT INTO media (nomMedia,typeMedia,creationDate,modificationDate) VALUES ("' . $finalName . '","' . $typeMedia . '","' . $date . '","' . $date . '")');
+        $db->query('INSERT INTO media (nomFichierMedia,typeMedia,creationDate,modificationDate) VALUES ("' . $finalName . '","' . $typeMedia . '","' . $date . '","' . $date . '")');
         $lastInsertId = EDatabase::getInstance()->lastInsertId();
         
         // Déplacement depuis le répertoire temporaire
