@@ -13,7 +13,7 @@
     <body>
         <?php include './includes/header.html';?>
 
-        <form method="POST" action="./php/post.php" enctype="multipart/form-data">
+        <form method="POST" action="./php/newpost.php" enctype="multipart/form-data">
         <div class="container">
             <div class="row">
                 <div class="col-12 card">
@@ -21,7 +21,7 @@
                         <textarea rows="2"></textarea>
                         <label for="imgFile"><i class="far fa-images"></i></label>
                         <input type="hidden" name="MAX_FILE_SIZE" value="3000000">
-                        <input type="file" name="imgFile" id="imgFile" multiple accept="image/*">
+                        <input type="file" name="imgFile[]" id="imgFile" multiple accept="image/*">
                         <input type="submit" class="btn btn-outline-primary" name="envoyer" value="Submit">
                 </div>
             </div>
