@@ -1,14 +1,20 @@
 <?php
-require_once $_SERVER["DOCUMENT_ROOT"].'/GUNERA_152/php/server/database.php';
+require_once $_SERVER["DOCUMENT_ROOT"].'/GUNER_M152/php/server/database.php';
 
 
-function insertPost($commentaire, $date){
+function insertPost($commentaire, $fichiers= null){
+    $date = date("Y-m-d H:i:s");
 
-    $db = EDatabase::getInstance();
-    $date = date("Y-m-d H:i:s")
     try {
-        $db->query('INSERT INTO post (commentaire,creationDate,modificationDate) VALUES ("' . $commentaire . '","' . $creationDate . '","' . $modificationDate . '")');
-        header("Location: ./index.php");
+        $db = EDatabase::getInstance();
+
+        $db->query('INSERT INTO post (commentaire,creationDate,modificationDate) VALUES ("' . $commentaire . '","' . $date . '","' . $date . '")');
+
+        if($fichiers!=null){
+        $lastInsertId = EDatabase::getInstance()->lastInsertId();
+        for ($i=0; $i < count($fichiers['name']); $i++) { 
+            insertMedia($fichiers['name'][$i], $fichiers['type'][$i], $fichiers['tmp_name'][$i],$lastInsertId);
+        }}
     } catch (PDOException $ex) {
         echo "An Error occured!"; // user friendly message
         error_log($ex->getMessage());
@@ -16,23 +22,35 @@ function insertPost($commentaire, $date){
 
 }
 
-function insertMedia($nomFichierMedia,$typeMedia){
-
-    $db = EDatabase::getInstance();
+function insertMedia($nomFichierMedia,$typeMedia, $tmpName, $idPost){
+    $date = date("Y-m-d H:i:s");
     try {
-        $db->query('INSERT INTO post (nomFichierMedia,typeMedia,creationDate,modificationDate) VALUES ("' . $commentaire . '","' . $creationDate . '","' . $modificationDate . '")');
-        header("Location: ./index.php");
+        $db = EDatabase::getInstance();
+        // Nettoyage du nom de fichier
+        $nom_fichier = preg_replace('/[^a-z0-9\.\-]/ i','',$nomFichierMedia);
+        $nom_fichier = $nomFichierMedia;
+        $splitName = explode(".", $nom_fichier);
+        $newName = uniqid();
+        $finalName = $newName . "." . $splitName[1];
+        $db->query('INSERT INTO media (nomMedia,typeMedia,creationDate,modificationDate) VALUES ("' . $finalName . '","' . $typeMedia . '","' . $date . '","' . $date . '")');
+        $lastInsertId = EDatabase::getInstance()->lastInsertId();
+        
+        // Déplacement depuis le répertoire temporaire
+        if(move_uploaded_file($tmpName,'../uploads/'.$finalName)){
+            insertContain($idPost,$lastInsertId);
+        }
     } catch (PDOException $ex) {
         echo "An Error occured!"; // user friendly message
         error_log($ex->getMessage());
     }
 }
 
-function getIdPost(){
-    
+function insertContain($idPost, $idMedia){
+    try {
+        $db = EDatabase::getInstance();
+        $db->query('INSERT INTO contenir (idPost,idMedia) VALUES ("' . $idPost . '","' . $idMedia . '")');
+    } catch (PDOException $ex) {
+        echo "An Error occured!"; // user friendly message
+        error_log($ex->getMessage());
+    }
 }
-
-function insertData($commentaire, $date){
-    insertPost($commentaire, $date)
-}
-?>

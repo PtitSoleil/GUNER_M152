@@ -3,7 +3,7 @@
  * @author 	dominique.aigroz@edu.ge.ch
  */
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/M306/config/conparam.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/GUNER_M152/config/conparam.php';
 /**
  * @brief	Helper class pour encapsuler l'objet PDO
  * 			et l'appel aux méthodes

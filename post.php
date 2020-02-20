@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="col-12 card">
                         <label for="img"><i class="fas fa-user"></i></label>
-                        <textarea rows="2"></textarea>
+                        <textarea name="commentary" rows="2"></textarea>
                         <label for="imgFile"><i class="far fa-images"></i></label>
                         <input type="hidden" name="MAX_FILE_SIZE" value="3000000">
                         <input type="file" name="imgFile[]" id="imgFile" multiple accept="image/*">

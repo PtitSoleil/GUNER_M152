@@ -7,7 +7,7 @@ define ('EDB_HOST', "localhost");
 // Numéro de Port
 define ('EDB_PORT', "3306");
 // Nom de la base de donnée
-define ('EDB_DBNAME', "m152");
+define ('EDB_DBNAME', "portfolio_m152");
 // Nom du compte de la base de donnée
 define ('EDB_USER', "root");
 // Mot de passe du compte
