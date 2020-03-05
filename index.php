@@ -1,3 +1,4 @@
+<?php require_once './php/showpost.php'; ?>
 <!doctype html>
 <html lang="fr">
     <head>
@@ -16,27 +17,12 @@
         <div class="container mt-5">
             <div class="row">
                 <div class="col-md-6">
-                    <div class="card"> 
-                        <img class="card-img-top"alt="Example1" src="https://image.freepik.com/free-photo/cityscape-bangkok-downtown-building-concept_53876-30344.jpg">
-                        <div class="card-body">
-                            <h5 class="card-title">NOM DE VOTRE BLOG</h5>
-                            <p class="card-text">45 Followers, 13 Posts</p>
-                            <i class="fas fa-user"></i>
-                        </div>
+                <div class="card mt-2"> 
+                    <h1 class="text-center">Welcome !</h1>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="card"> 
-                    <h1 class="text-center">Welcome !</h1>
-                    </div>
-                    <div class="card mt-2"> 
-                        <img class="card-img-top"alt="Example2" src="https://www.superprof.ch/blog/file/2017/12/choisir-paysage-photo.jpg">
-                        <div class="card-body">
-                            <h5 class="card-title">Social Good</h5>
-                            <p class="card-text">1,200 Followers, 83 Posts</p>
-                            <i class="fas fa-user"></i>
-                        </div>
-                    </div>
+                    <?php showPost() ?>
                 </div>
             </div>
         </div>

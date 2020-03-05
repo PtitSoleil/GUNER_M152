@@ -14,15 +14,17 @@
         <?php include './includes/header.html';?>
 
         <form method="POST" action="./php/newpost.php" enctype="multipart/form-data">
-        <div class="container">
+        <div class="container mt-5">
             <div class="row">
                 <div class="col-12 card">
-                        <label for="img"><i class="fas fa-user"></i></label>
-                        <textarea name="commentary" rows="2"></textarea>
-                        <label for="imgFile"><i class="far fa-images"></i></label>
+                        <textarea class="mt-2" name="commentary" rows="2"></textarea>
+                        <div class="custom-file mt-2 mb-2">
+                        <!-- <label for="imgFile"><i class="far fa-images"></i></label> -->
                         <input type="hidden" name="MAX_FILE_SIZE" value="3000000">
-                        <input type="file" name="imgFile[]" id="imgFile" multiple accept="image/*">
-                        <input type="submit" class="btn btn-outline-primary" name="envoyer" value="Submit">
+                        <input class="custom-file-input" type="file" name="imgFile[]" id="imgFile" multiple accept="image/*">
+                        <label class="custom-file-label" for="imgFile" aria-describedby="inputGroupFileAddon02">Choose file(s)</label>
+                        </div>
+                        <input type="submit" class="btn btn-outline-primary mb-2" name="envoyer" value="Submit">
                 </div>
             </div>
         </div>
