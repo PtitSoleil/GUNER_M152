@@ -6,16 +6,24 @@ function insertPost($commentaire, $fichiers= null){
     $date = date("Y-m-d H:i:s");
 
     try {
+        EDatabase::beginTransaction();
+
         $db = EDatabase::getInstance();
 
         $db->query('INSERT INTO post (commentaire,creationDate,modificationDate) VALUES ("' . $commentaire . '","' . $date . '","' . $date . '")');
+
+
 
         if($fichiers!=null){
         $lastInsertId = EDatabase::getInstance()->lastInsertId();
         for ($i=0; $i < count($fichiers['name']); $i++) { 
             insertMedia($fichiers['name'][$i], $fichiers['type'][$i], $fichiers['tmp_name'][$i],$lastInsertId);
         }}
+
+        EDatabase::commit();
+
     } catch (PDOException $ex) {
+        EDatabase::rollBack();
         echo "An Error occured!"; // user friendly message
         error_log($ex->getMessage());
     }
@@ -25,6 +33,8 @@ function insertPost($commentaire, $fichiers= null){
 function insertMedia($nomFichierMedia,$typeMedia, $tmpName, $idPost){
     $date = date("Y-m-d H:i:s");
     try {
+        EDatabase::beginTransaction();
+
         $db = EDatabase::getInstance();
         // Nettoyage du nom de fichier
         $nom_fichier = preg_replace('/[^a-z0-9\.\-]/ i','',$nomFichierMedia);
@@ -39,18 +49,29 @@ function insertMedia($nomFichierMedia,$typeMedia, $tmpName, $idPost){
         if(move_uploaded_file($tmpName,'../uploads/'.$finalName)){
             insertContain($idPost,$lastInsertId);
         }
+
+        EDatabase::commit();
+
     } catch (PDOException $ex) {
         echo "An Error occured!"; // user friendly message
         error_log($ex->getMessage());
+
+        EDatabase::rollBack();
     }
 }
 
 function insertContain($idPost, $idMedia){
     try {
+        EDatabase::beginTransaction();
+
         $db = EDatabase::getInstance();
-        $db->query('INSERT INTO contenir (idPost,idMedia) VALUES ("' . $idPost . '","' . $idMedia . '")');
+        $db->query('INSERT INTO contenir (Post_idPost,media_idMedia) VALUES ("' . $idPost . '","' . $idMedia . '")');
+
+        EDatabase::commit();
     } catch (PDOException $ex) {
         echo "An Error occured!"; // user friendly message
         error_log($ex->getMessage());
+
+        EDatabase::rollBack();
     }
 }

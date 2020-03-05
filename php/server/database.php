@@ -4,6 +4,8 @@
  */
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/GUNER_M152/config/conparam.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/GUNER_M152/php/server/ExtendedPdo.php';
+
 /**
  * @brief	Helper class pour encapsuler l'objet PDO
  * 			et l'appel aux méthodes
@@ -31,8 +33,8 @@ class EDatabase {
 		if(!self::$pdoInstance){
 			try{
 				$dsn = EDB_DBTYPE.':host='.EDB_HOST.';port='.EDB_PORT.';dbname='.EDB_DBNAME;
-				self::$pdoInstance = new PDO($dsn, EDB_USER, EDB_PASS, array('charset'=>'utf8'));
-				self::$pdoInstance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+				self::$pdoInstance = new ExtendedPdo($dsn, EDB_USER, EDB_PASS, array('charset'=>'utf8'));
+				self::$pdoInstance->setAttribute(ExtendedPdo::ATTR_ERRMODE, ExtendedPdo::ERRMODE_EXCEPTION);
 			}catch(PDOException  $e ){
 				echo "EDatabase Error: ".$e->getMessage();
 			}
