@@ -12,6 +12,10 @@ require_once './createpost.php';
                 if($totalSize > 70000000 || $fichiers['size'][$i] > 3000000){
                     if($fichiers['type'][$i] != "image/gif" || $fichiers['type'][$i] != "image/jpeg" || $fichiers['type'][$i] != "image/jpg" || $fichiers['type'][$i] != "image/png"){
                         echo 'Erreur';
+                    }else if ($fichiers['type'][$i] != "video/mp4" || $fichiers['type'][$i] != "video/webm" || $fichiers['type'][$i] != "video/ogg"){
+                        echo 'Erreur';
+                    }else if ($fichiers['type'][$i] != "audio/mp3"  || $fichiers['type'][$i] != "audio/ogg"){
+                        echo 'Erreur';
                     }
                     echo 'Erreur';
                 }

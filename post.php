@@ -17,11 +17,11 @@
         <div class="container mt-5">
             <div class="row">
                 <div class="col-12 card">
-                        <textarea class="mt-2" name="commentary" rows="2"></textarea>
+                        <textarea class="mt-2 form-control" name="commentary" rows="2"></textarea>
                         <div class="custom-file mt-2 mb-2">
                         <!-- <label for="imgFile"><i class="far fa-images"></i></label> -->
                         <input type="hidden" name="MAX_FILE_SIZE" value="3000000">
-                        <input class="custom-file-input" type="file" name="imgFile[]" id="imgFile" multiple accept="image/*">
+                        <input class="custom-file-input" type="file" name="imgFile[]" id="imgFile" multiple accept="image/*,video/*,audio/*">
                         <label class="custom-file-label" for="imgFile" aria-describedby="inputGroupFileAddon02">Choose file(s)</label>
                         </div>
                         <input type="submit" class="btn btn-outline-primary mb-2" name="envoyer" value="Submit">

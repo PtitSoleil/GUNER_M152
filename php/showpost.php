@@ -26,7 +26,18 @@ function showPost(){
                 echo '<div class="card mt-2">';
                 $splitedMedias = explode(",", $row['medias']);
                 foreach($splitedMedias as $splitedMedia){
-                echo '<img class="card-img-top"alt="'.$splitedMedia.'" src="./uploads/'.$splitedMedia. '">';
+                    if($row['types'] == "image/gif" || $row['types'] == "image/jpeg" || $row['types'] == "image/jpg" || $row['types'] == "image/png"){
+                        echo '<img class="card-img-top"alt="'.$splitedMedia.'" src="./uploads/'.$splitedMedia. '">';
+                    }else if($row['types'] == "video/mp4" || $row['types'] == "video/webm" || $row['types'] == "video/ogg"){
+                        echo '<video controls src="./uploads/'.$splitedMedia. '">Ici la description alternative</video>';
+                    }else if($row['types'] == "audio/mp3" || $row['types'] == "audio/ogg"){
+                        echo '<audio
+                        controls
+                        src="./uploads/'.$splitedMedia. '">
+                            Your browser does not support the
+                            <code>audio</code> element.
+                    </audio>';
+                    }
                 }
                 echo '<div class="card-body">';
                 echo '<h5 class="card-title">'.$row['comment'].'</h5>';
